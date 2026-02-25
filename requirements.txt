@@ -1,0 +1,6 @@
+dotenv
+datetime
+aiohttp
+aiosqlite
+python-decouple
+sqlalchemy
