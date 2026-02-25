@@ -1,2 +1,3 @@
-# sqlite3-sqlalchemy-pattern
+#SQLITE + SQLALCHEMY
 Простой шаблон работы базы данных SQL через субд SQLite3 c использованием ORM SQLAlchemy
+
