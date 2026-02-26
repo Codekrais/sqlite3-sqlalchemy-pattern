@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime
 from database.base import connection, create_tables
 from database.models import User
 from sqlalchemy import select
@@ -6,7 +7,7 @@ from typing import List, Dict, Any, Optional
 from sqlalchemy.exc import SQLAlchemyError
 
 @connection
-async def set_user(session, tg_id: int, username: str, full_name: str = None) -> Optional[User]:
+async def set_user(session, tg_id: int, username: str, last_update: str = datetime.now().strftime("%Y-%m-%d %H:%M:%S"), full_name: str = None) -> Optional[User]:
     """
     Принимает chat_id, username, full_name
     Проверяет наличие записи об переданном chat_id:
@@ -17,7 +18,7 @@ async def set_user(session, tg_id: int, username: str, full_name: str = None) ->
         user = await session.scalar(select(User).filter_by(id=tg_id))
 
         if not user:
-            new_user = User(id=tg_id, username=username, full_name=full_name)
+            new_user = User(id=tg_id, username=username, full_name=full_name, last_update=last_update)
             session.add(new_user)
             await session.commit()
             print(f"Зарегистрировал пользователя с ID {tg_id}!")
