@@ -12,4 +12,4 @@ class User(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     username: Mapped[str] = mapped_column(String, nullable=True)
     full_name: Mapped[str] = mapped_column(String, nullable=True)
-
+    last_update: Mapped[str] = mapped_column(String, nullable=True)
